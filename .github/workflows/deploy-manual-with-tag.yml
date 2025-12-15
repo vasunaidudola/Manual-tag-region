@@ -18,6 +18,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Version: ${{ github.ref_name }}"
-          echo "Region: ${{ inputs.region }}"
+      - name: Show deployment details
+        run: |
+          echo "Deploying version: ${{ github.ref_name }}"
+          echo "Target region: ${{ inputs.region }}"
