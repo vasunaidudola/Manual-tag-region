@@ -1,6 +1,6 @@
 name: Deploy Manual
 
-# 👇 Shown in Actions list (before opening)
+# Shows region BEFORE opening the workflow
 run-name: Deploy -> ${{ inputs.region }}
 
 on:
@@ -17,7 +17,7 @@ on:
 
 jobs:
   deploy:
-    # 👇 THIS is what shows after opening the workflow
+    # 🔴 THIS LINE IS THE KEY (job display name)
     name: Deploy to ${{ inputs.region }}
     runs-on: ubuntu-latest
 
