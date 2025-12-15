@@ -1,5 +1,6 @@
-name: Deploy Manual
+name: Deploy Release
 
+# 👇 This controls what you see in the Actions list
 run-name: Deploy -> ${{ inputs.region }}
 
 on:
@@ -10,15 +11,26 @@ on:
         required: true
         type: choice
         options:
-          - us-east-1
-          - ap-south-1
-          - eu-west-1
+          - prod-east
+          - prod-west
+          - prod-south
 
 jobs:
-  deploy:
+  approval:
+    name: approval-gate-${{ inputs.region }}
     runs-on: ubuntu-latest
     steps:
-      - name: Show deployment details
+      - name: Approval step
+        run: |
+          echo "Approval granted for region: ${{ inputs.region }}"
+          echo "Version: ${{ github.ref_name }}"
+
+  deploy:
+    name: deploy-${{ inputs.region }} / deploy
+    runs-on: ubuntu-latest
+    needs: approval
+    steps:
+      - name: Deploy application
         run: |
           echo "Deploying version: ${{ github.ref_name }}"
-          echo "Target region: ${{ inputs.region }}"
+          echo "Deploying to region: ${{ inputs.region }}"
