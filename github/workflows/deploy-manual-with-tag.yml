@@ -17,9 +17,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Show deployment info
-        run: |
-          echo "Deploying version ${{ github.ref_name }}"
+      - run: |
+          echo "Version: ${{ github.ref_name }}"
           echo "Region: ${{ inputs.region }}"
