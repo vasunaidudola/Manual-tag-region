@@ -1,4 +1,4 @@
-name: Deploy Manual
+name: Deploy 
  
 run-name: Deploy Release ${{ inputs.region }}
  
